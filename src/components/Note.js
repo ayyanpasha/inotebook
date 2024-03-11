@@ -12,8 +12,13 @@ export default function Note() {
     const userContext = useContext(UserContext);
     const { notes, getNotes } = context;
     const [editNote, setEditNote] = useState({ _id: "NONE", title: "", description: "", tag: "" });
+    const [showNotes, setShowNotes] = useState(notes);
     const [showPage, setshowPage] = useState(true);
+    const [search, setSearch] = useState("");
     const history = useNavigate();
+    const onChange = (e) => {
+        setSearch(e.target.value);
+    }
     useEffect(() => {
         getNotes();
         // eslint-disable-next-line
@@ -33,6 +38,17 @@ export default function Note() {
         helper();
         // eslint-disable-next-line
     }, []);
+    useEffect(() => {
+        const filterCriteria = search.trim().toLowerCase();
+        if (filterCriteria.length !== 0) {
+            const filterNotes = notes.filter((element) => {
+                return element.tag.toLowerCase().includes(filterCriteria);
+            });
+            setShowNotes(filterNotes);
+        } else {
+            setShowNotes(notes);
+        }
+    }, [search, notes]);
     useEffect(() => {
         if (userContext.user === undefined) {
 
@@ -69,10 +85,18 @@ export default function Note() {
                     </div>
                 </div>
                 <div className='row my-3'>
+                    <div className="my-3">
+                        <label htmlFor="tag" className="form-label">Serch by Tag</label>
+                        <input type="text" className="form-control" id="tag" name='tag' onChange={onChange} value={search} />
+                    </div>
                     <h2>Your Notes</h2>
-                    {(notes.length === 0) ? <div className='container' style={{ height: "100%" }}>No Notes</div> : notes.map((note) => {
-                        return <NoteItem key={note._id} updateNote={updateNote} note={note} />
-                    })}
+                    {
+                        (showNotes.length === 0) ?
+                            <div className='container' style={{ height: "100%" }}>No Notes</div>
+                            : showNotes.map((note) => {
+                                return <NoteItem key={note._id} updateNote={updateNote} note={note} />
+                            })
+                    }
                 </div>
             </>
         )

@@ -21,11 +21,9 @@ const UserState = (props) => {
             }
         });
         const json = await response.json();
-        console.log(json);
         if (json !== null && json.name) {
             setUser(json.name);
             if (location.pathname === "/login" || location.pathname === "/signup") {
-                console.log("true");
                 history("/");
             }
         } else {

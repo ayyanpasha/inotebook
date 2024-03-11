@@ -30,12 +30,10 @@ export default function Note() {
                 history("/signup");
             }
         }
-        console.log(1);
         helper();
         // eslint-disable-next-line
     }, []);
     useEffect(() => {
-        console.log(2);
         if (userContext.user === undefined) {
 
         } else if (userContext.user === null) {

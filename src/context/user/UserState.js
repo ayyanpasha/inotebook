@@ -13,6 +13,7 @@ const UserState = (props) => {
     const update = async () => {
         if (!localStorage.getItem("auth-token")) {
             setUser(null);
+            return;
         }
         const response = await fetch(`${host}/api/auth/getuser`, {
             method: 'POST',

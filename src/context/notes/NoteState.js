@@ -4,7 +4,7 @@ import AlertContext from "../alert/AlertContext";
 
 const NoteState = (props) => {
     const alertContext = useContext(AlertContext);
-    const host = "http://localhost:3001"
+    const host = process.env.REACT_APP_API_URL;
     const [notes, setnotes] = useState([]);
 
     //Get All Notes

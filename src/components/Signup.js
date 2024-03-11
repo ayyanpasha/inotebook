@@ -15,7 +15,8 @@ export default function Signup() {
             alertContext.showAlert("Password doesn't match", "danger")
             return;
         }
-        const host = "http://localhost:3001";
+        const host = process.env.REACT_APP_API_URL;
+        console.log(host);
         const response = await fetch(`${host}/api/auth/signup`, {
             method: 'POST',
             headers: {

@@ -9,7 +9,7 @@ export default function Login() {
     const [credential, setCredential] = useState({ email: "", password: "" });
     const history = useNavigate();
     const handleSubmit = async (event) => {
-        const host = "http://localhost:3001";
+        const host = process.env.REACT_APP_API_URL;
         event.preventDefault();
         const response = await fetch(`${host}/api/auth/login`, {
             method: 'POST',

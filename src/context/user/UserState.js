@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const UserState = (props) => {
     const alertContext = useContext(AlertContext);
-    const host = "http://localhost:3001"
+    const host = process.env.REACT_APP_API_URL;
     const [user, setUser] = useState(undefined);
     const location = useLocation();
     const history = useNavigate();

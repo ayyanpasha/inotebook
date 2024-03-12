@@ -9,6 +9,7 @@ import Alert from './components/Alert';
 import AlertState from './context/alert/AlertState';
 import UserState from './context/user/UserState';
 import Note from './components/Note';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                   <Route exact path='/about' element={<About />} />
                   <Route exact path='/login' element={<Login />} />
                   <Route exact path='/signup' element={<Signup />} />
+                  <Route path='/*' element={<NotFound />} />
                 </Routes>
               </div>
             </NoteState>

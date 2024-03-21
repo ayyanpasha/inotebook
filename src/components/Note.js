@@ -86,7 +86,7 @@ export default function Note() {
                 </div>
                 <div className='row my-3'>
                     <div className="my-3">
-                        <label htmlFor="tag" className="form-label">Serch by Tag</label>
+                        <label htmlFor="tag" className="form-label">Search by Tag</label>
                         <input type="text" className="form-control" id="tag" name='tag' onChange={onChange} value={search} />
                     </div>
                     <h2>Your Notes</h2>
